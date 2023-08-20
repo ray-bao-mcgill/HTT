@@ -12,7 +12,7 @@ function Home() {
     };
 
     fetchData();
-  }, [products]);
+  }, []);
 
   return (
     <>
