@@ -8,7 +8,7 @@ interface Props {
 function ProductPreviewcard({ title, description }: Props) {
   return (
     <div className="product-preview-card">
-      <h1 className="product-preview-card__title">{title}</h1>
+      <h3 className="product-preview-card__title">{title}</h3>
       <p className="product-preview-card__description">{description}</p>
     </div>
   );
