@@ -1,16 +1,18 @@
+import { useEffect, useState } from "react";
 import { ProductPreviewCard } from "../../components";
+import { fetchProducts } from "../../infrastructure";
 
 function Home() {
-  const products = [
-    {
-      title: "Product #1",
-      description: "Test.",
-    },
-    {
-      title: "Product #2",
-      description: "Test.",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchProducts();
+      setProducts(data["products"]);
+    };
+
+    fetchData();
+  }, [products]);
 
   return (
     <>
@@ -21,6 +23,7 @@ function Home() {
           <ProductPreviewCard
             title={product.title}
             description={product.description}
+            key={`${product.title}`}
           />
         ))}
       </div>
