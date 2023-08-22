@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductPreviewCard } from "../../components";
 import { fetchProducts } from "../../infrastructure";
+import "./Home.style.scss";
 
 function Home() {
   const [products, setProducts] = useState([]);
