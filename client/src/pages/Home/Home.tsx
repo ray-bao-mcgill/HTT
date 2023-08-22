@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ProductPreviewCard } from "../../components";
-import { fetchProducts } from "../../infrastructure";
+import { ServiceAPI } from "../../infrastructure";
 import "./Home.style.scss";
 
 function Home() {
@@ -8,7 +8,7 @@ function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchProducts();
+      const data = await ServiceAPI.fetchProducts();
       setProducts(data["products"]);
     };
 
