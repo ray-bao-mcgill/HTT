@@ -1,4 +1,5 @@
 import express, { Request, Response, Router, NextFunction } from "express";
+import { ProductService } from "../../services";
 
 const router = express.Router();
 
@@ -8,18 +9,11 @@ router.get("/", (_, res) => {
   });
 });
 
-const getProducts = (request: Request, response: Response) => {
+const getProducts = async (request: Request, response: Response) => {
+  const products = await ProductService.all();
+
   response.send({
-    products: [
-      {
-        title: "Product #1",
-        description: "Test.",
-      },
-      {
-        title: "Product #2",
-        description: "Test.",
-      },
-    ],
+    products: products,
   });
 };
 
