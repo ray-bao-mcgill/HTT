@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { ProductPreviewCard } from "../../components";
 import { ServiceAPI } from "../../infrastructure";
-import { type Product } from "../../infrastructure/ServiceAPI/types";
 import "./Home.style.scss";
 
 function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
