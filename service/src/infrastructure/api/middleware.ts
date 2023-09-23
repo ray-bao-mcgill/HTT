@@ -1,21 +1,25 @@
 import { NextFunction, Request, Response } from "express";
 
-export function notFound(req: Request, res: Response, next: NextFunction) {
-  res.status(404);
-  const error = new Error(`🔍 - Not Found - ${req.originalUrl}`);
+export function notFound(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) {
+  response.status(404);
+  const error = new Error(`🔍 - Not Found - ${request.originalUrl}`);
   next(error);
 }
 
 export function errorHandler(
-  err: Error,
+  error: Error,
   _: Request,
-  res: Response,
+  response: Response,
   next: NextFunction,
 ) {
-  const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
-  res.status(statusCode);
-  res.json({
-    message: err.message,
-    stack: process.env.NODE_ENV === "production" ? "🥞" : err.stack,
+  const statusCode = response.statusCode !== 200 ? response.statusCode : 500;
+  response.status(statusCode);
+  response.json({
+    message: error.message,
+    stack: process.env.NODE_ENV === "production" ? "🛠️" : error.stack,
   });
 }

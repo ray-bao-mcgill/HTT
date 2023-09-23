@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import { ProductPreviewCard } from "../../components";
 import { ServiceAPI } from "../../infrastructure";
+import { type Product } from "../../infrastructure/ServiceAPI/types";
 import "./Home.style.scss";
 
 function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await ServiceAPI.fetchProducts();
-      setProducts(data["products"]);
+      const products = await ServiceAPI.fetchProducts();
+      setProducts(products);
     };
 
     fetchData();
   }, []);
 
   return (
-    <>
+    <div className="home-page">
       <h1 className="home-page__title">Hello World!</h1>
       <h2>Products:</h2>
       <div className="home-page__products">
@@ -28,7 +29,7 @@ function Home() {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,22 +1,15 @@
-import express, { Request, Response, Router, NextFunction } from "express";
-import { ProductService } from "../../services";
+import express, { Request, Response } from "express";
+import { ProductRouter } from "./routes";
 
 const router = express.Router();
 
-router.get("/", (_, res) => {
-  res.json({
-    message: "API - 👋🌎🌍🌏",
-  });
-});
-
-const getProducts = async (request: Request, response: Response) => {
-  const products = await ProductService.all();
-
-  response.send({
-    products: products,
+const getAPIRoot = async (_: Request, response: Response) => {
+  response.json({
+    message: "API - 👋",
   });
 };
 
-router.get("/products", getProducts);
+router.get("/", getAPIRoot);
+router.use("/products", ProductRouter);
 
 export default router;
