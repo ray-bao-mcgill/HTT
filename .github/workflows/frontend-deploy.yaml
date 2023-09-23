@@ -18,8 +18,19 @@ jobs:
         with:
           node-version: 16
 
-      - run: |
+      - name: Get repository name
+        id: repo-name
+        uses: MariachiBear/get-repo-name-action@v1.1.0
+        with:
+          with-owner: 'false'
+          string-case: 'lowercase'
+
+      - name: Install and build
+        env:
+          REPO_NAME: ${{ steps.repo-name.outputs.repository-name }}
+        run: |
           cd client
+          export ${{ github.event.repository.name }}
           npm install
           npm run build
 
