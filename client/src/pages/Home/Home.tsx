@@ -24,7 +24,7 @@ function Home() {
           <ProductPreviewCard
             title={product.title}
             description={product.description}
-            key={`${product.title}`}
+            key={`${product.id}`}
           />
         ))}
       </div>
