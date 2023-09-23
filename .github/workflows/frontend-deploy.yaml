@@ -30,7 +30,6 @@ jobs:
           REPO_NAME: ${{ steps.repo-name.outputs.repository-name }}
         run: |
           cd client
-          export ${{ github.event.repository.name }}
           npm install
           npm run build
 
