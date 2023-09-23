@@ -34,7 +34,22 @@ const getProduct = async (request: Request, response: Response) => {
   });
 };
 
+const createProduct = async (request: Request, response: Response) => {
+  const product = await ProductService.create(
+    request.body.title,
+    request.body.description,
+  );
+
+  return success(response, {
+    data: {
+      product: product,
+    },
+    statusCode: 201,
+  });
+};
+
 router.get("/", getProducts);
 router.get("/:id", getProduct);
+router.post("/", createProduct);
 
 export default router;
