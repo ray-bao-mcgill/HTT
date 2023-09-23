@@ -48,7 +48,7 @@ npm install
 
 3. Copy `.env.sample`
 
-Create a copy of the `.env.sample` file. and rename the file's name to be `.env`.
+Create a copy of the `.env.sample` file. and rename the file's name to `.env`.
 
 
 4. Run the service
