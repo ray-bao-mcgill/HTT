@@ -12,68 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
+          node-version: 16
 
-  # Deploy job
-  deploy:
-    # Add a dependency to the build job
-    needs: build
+      - run: |
+          cd client
+          npm run build
 
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action
-
-
-name: Testing the GitHub Pages publication
-
-on:
-  push:
-    # branches:
-    #   - main
-
-jobs:
-  jekyll:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    # Install NPM packages
-    - name: Install NPM packages
-      run: |
-        npm install
-
-    # Install Gems
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '2.7.6' # Not needed with a .ruby-version file
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-
-    # Build the site
-    - name: Build the site
-      run: |
-        DISABLE_WHITELIST=1 bundle exec jekyll build
-        gem build githubfieldday.gemspec
-
-    # Publish the site
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: _site
+      # Publish the site
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: client/dist
