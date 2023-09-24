@@ -23,6 +23,7 @@ jobs:
           cd service
           npm install
           cp .env.sample .env
+          npm run dev &
 
       - uses: cypress-io/github-action@v6
         with:
@@ -32,7 +33,6 @@ jobs:
           browser: chrome
           start: |
             npm run dev
-            bash -c server.sh
 
       # after the test run completes store videos and any screenshots
       - uses: actions/upload-artifact@v3
