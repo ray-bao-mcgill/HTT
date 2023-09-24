@@ -18,7 +18,6 @@ jobs:
           cd service
           npm install
           cp .env.sample .env
-          npm run dev &
 
       - uses: cypress-io/github-action@v6
         with:
