@@ -12,6 +12,9 @@ jobs:
         run: |
           cd client
           npm install
+          # This is janky but whatever
+          echo "cd ../service && npm run dev" >> server.sh
+          chmod +x server.sh
 
       - name: Install server
         run: |
@@ -27,7 +30,7 @@ jobs:
           browser: chrome
           start: |
             npm run dev
-            cd ../service; npm run dev
+            server.sh
 
       # after the test run completes store videos and any screenshots
       - uses: actions/upload-artifact@v3
