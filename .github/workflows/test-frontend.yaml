@@ -35,12 +35,12 @@ jobs:
         # if: failure()
         with:
           name: cypress-screenshots
-          path: service/cypress/screenshots
+          path: client/cypress/screenshots
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
         
 
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
-          path: service/cypress/videos
+          path: client/cypress/videos
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
