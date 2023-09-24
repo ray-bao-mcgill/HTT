@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "check": "prettier --check '**/*.{css,scss,html,ts,tsx}'",
     "format": "prettier --write '**/*.{css,scss,html,ts,tsx}'",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "server": "cd ../service && npm run dev"
   },
   "dependencies": {
     "localforage": "^1.10.0",

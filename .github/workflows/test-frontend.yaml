@@ -12,11 +12,6 @@ jobs:
         run: |
           cd client
           npm install
-          # This is janky but whatever
-          echo "cd ../service && npm run dev" >> server.sh
-          chmod +x server.sh
-          stat server.sh
-          pwd
 
       - name: Install server
         run: |
@@ -29,10 +24,11 @@ jobs:
         with:
           working-directory: client
           wait-on: 'http://localhost:5173, http://localhost:5000'
-          wait-on-timeout: 120
+          wait-on-timeout: 30
           browser: chrome
           start: |
             npm run dev
+            npm run server
 
       # after the test run completes store videos and any screenshots
       - uses: actions/upload-artifact@v3
