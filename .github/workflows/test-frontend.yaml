@@ -30,7 +30,7 @@ jobs:
           browser: chrome
           start: |
             npm run dev
-            server.sh
+            bash -c server.sh
 
       # after the test run completes store videos and any screenshots
       - uses: actions/upload-artifact@v3
