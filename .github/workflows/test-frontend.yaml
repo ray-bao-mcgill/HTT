@@ -16,6 +16,7 @@ jobs:
           echo "cd ../service && npm run dev" >> server.sh
           chmod +x server.sh
           stat server.sh
+          pwd
 
       - name: Install server
         run: |
