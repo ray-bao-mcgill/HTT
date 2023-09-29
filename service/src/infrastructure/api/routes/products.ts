@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { ProductService } from "../../../services";
-import { success, error } from "../utils";
+import { success, error, verifyAuthorization } from "../utils";
 
 const router = express.Router();
 
@@ -35,9 +35,21 @@ const getProduct = async (request: Request, response: Response) => {
 };
 
 const createProduct = async (request: Request, response: Response) => {
+  const authorization = await verifyAuthorization(
+    request.headers.authorization,
+  );
+
+  if (authorization.err) {
+    return error(response, {
+      error: authorization.val.message,
+      statusCode: 401,
+    });
+  }
+
   const product = await ProductService.create(
     request.body.title,
     request.body.description,
+    request.body.price,
   );
 
   return success(response, {

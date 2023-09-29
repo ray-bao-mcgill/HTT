@@ -14,14 +14,26 @@ export const find = async (id: string): Promise<Product | null> => {
   return product;
 };
 
+export const findMany = async (ids: string[]): Promise<Product[]> => {
+  const products = await prisma.product.findMany({
+    where: { id: { in: ids.map((id) => parseInt(id)) } },
+  });
+
+  return products;
+};
+
 export const create = async (
   title: string,
   description: string,
+  price: number,
+  imageUrl: string = "https://i.imgur.com/EyoQOjC.jpg",
 ): Promise<Product> => {
   const newProduct = await prisma.product.create({
     data: {
       title: title,
       description: description,
+      price: price,
+      imageUrl: imageUrl,
     },
   });
 
