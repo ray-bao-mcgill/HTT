@@ -22,6 +22,20 @@
             "options": {
                 "cwd": "${workspaceFolder}/service"
             }
+        },
+        {
+            "label": "Seed Service Database",
+            "type": "shell",
+            "command": "npx",
+            "args": [
+                "prisma",
+                "db",
+                "seed"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/service"
+            },
+            "dependsOn": "Install Service Dependencies"
         }
     ]
 }
