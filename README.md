@@ -112,7 +112,7 @@ npm run dev
 
 ## Line Item
 
-- A Line Item is one item of the Order. Think of an Order like a receipt, and a line Item is one line on the receipt.
+- A Line Item is one item purchased on an Order. Think of an Order like a receipt, and a line Item is one line on the receipt.
   - `id`: An auto-incremented integer serving as the primary key.
   - `quantity`: An integer representing the quantity of the product in the order.
   - `cost`: A floating-point number representing the cost of the line item.
